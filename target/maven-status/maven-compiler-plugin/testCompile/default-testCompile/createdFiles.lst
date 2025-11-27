@@ -1,0 +1,3 @@
+com\movemais\estoque\controller\ProdutoControllerIT.class
+com\movemais\estoque\service\MovimentoEstoqueServiceTest.class
+com\movemais\estoque\InventoryApplicationTests.class

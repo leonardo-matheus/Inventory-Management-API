@@ -1,0 +1,68 @@
+package com.movemais.estoque.service;
+
+import com.movemais.estoque.dto.movimento.MovimentoCreateRequest;
+import com.movemais.estoque.entity.*;
+import com.movemais.estoque.exception.BusinessException;
+import com.movemais.estoque.exception.NotFoundException;
+import com.movemais.estoque.repository.*;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.math.BigDecimal;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+class MovimentoEstoqueServiceTest {
+
+    private final ProdutoRepository produtoRepository = mock(ProdutoRepository.class);
+    private final DepositoRepository depositoRepository = mock(DepositoRepository.class);
+    private final EstoqueRepository estoqueRepository = mock(EstoqueRepository.class);
+    private final MovimentoEstoqueRepository movimentoRepository = mock(MovimentoEstoqueRepository.class);
+
+    private final MovimentoEstoqueService service =
+            new MovimentoEstoqueService(produtoRepository, depositoRepository, estoqueRepository, movimentoRepository);
+
+    @Test
+    void deveRegistrarEntradaSomandoSaldo() {
+        Produto produto = Produto.builder().id(1L).sku("SKU-1").nome("P1").precoUnitario(BigDecimal.TEN).ativo(true).build();
+        Deposito deposito = Deposito.builder().id(1L).codigo("D1").nome("Dep").build();
+        Estoque estoque = Estoque.builder().id(1L).produto(produto).deposito(deposito).quantidadeAtual(10L).build();
+
+        when(produtoRepository.findById(1L)).thenReturn(Optional.of(produto));
+        when(depositoRepository.findById(1L)).thenReturn(Optional.of(deposito));
+        when(estoqueRepository.findByProdutoAndDeposito(produto, deposito)).thenReturn(Optional.of(estoque));
+
+        MovimentoCreateRequest req = new MovimentoCreateRequest(1L, 1L, 5L, "entrada de teste");
+
+        var resp = service.registrarEntrada(req);
+
+        assertEquals(15L, estoque.getQuantidadeAtual());
+        verify(estoqueRepository).save(estoque);
+        verify(movimentoRepository).save(Mockito.any());
+        assertEquals(5L, resp.quantidade());
+    }
+
+    @Test
+    void deveFalharSaidaSemSaldo() {
+        Produto produto = Produto.builder().id(1L).sku("SKU-1").nome("P1").precoUnitario(BigDecimal.TEN).ativo(true).build();
+        Deposito deposito = Deposito.builder().id(1L).codigo("D1").nome("Dep").build();
+        Estoque estoque = Estoque.builder().id(1L).produto(produto).deposito(deposito).quantidadeAtual(2L).build();
+
+        when(produtoRepository.findById(1L)).thenReturn(Optional.of(produto));
+        when(depositoRepository.findById(1L)).thenReturn(Optional.of(deposito));
+        when(estoqueRepository.findByProdutoAndDeposito(produto, deposito)).thenReturn(Optional.of(estoque));
+
+        MovimentoCreateRequest req = new MovimentoCreateRequest(1L, 1L, 5L, "saida sem saldo");
+
+        assertThrows(BusinessException.class, () -> service.registrarSaida(req));
+    }
+
+    @Test
+    void deveFalharQuandoProdutoNaoExiste() {
+        when(produtoRepository.findById(1L)).thenReturn(Optional.empty());
+        MovimentoCreateRequest req = new MovimentoCreateRequest(1L, 1L, 1L, null);
+        assertThrows(NotFoundException.class, () -> service.registrarEntrada(req));
+    }
+}
