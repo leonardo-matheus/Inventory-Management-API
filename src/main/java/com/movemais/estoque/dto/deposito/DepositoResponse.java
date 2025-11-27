@@ -1,4 +1,8 @@
 package com.movemais.estoque.dto.deposito;
 
-public class DepositoResponse {
-}
+public record DepositoResponse(
+        Long id,
+        String nome,
+        String codigo,
+        String endereco
+) {}

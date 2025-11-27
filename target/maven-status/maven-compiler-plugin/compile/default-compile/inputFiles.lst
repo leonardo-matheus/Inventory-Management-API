@@ -3,10 +3,16 @@ C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\m
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\config\OpenApiConfig.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\config\SecurityConfig.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\controller\AuthController.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\controller\DepositoController.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\controller\EstoqueController.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\controller\MovimentoEstoqueController.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\controller\ProdutoController.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\auth\LoginRequest.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\auth\TokenResponse.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\deposito\DepositoCreateRequest.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\deposito\DepositoResponse.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\deposito\DepositoUpdateRequest.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\estoque\EstoqueSaldoResponse.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\movimento\MovimentoCreateRequest.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\movimento\MovimentoResponse.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\dto\produto\ProdutoCreateRequest.java
@@ -26,6 +32,8 @@ C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\m
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\repository\MovimentoEstoqueRepository.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\repository\ProdutoRepository.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\repository\UsuarioRepository.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\service\DepositoService.java
+C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\service\EstoqueService.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\service\JwtTokenService.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\service\MovimentoEstoqueService.java
 C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\java\com\movemais\estoque\service\ProdutoService.java

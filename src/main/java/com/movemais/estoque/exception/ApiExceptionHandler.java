@@ -1,101 +1,58 @@
 package com.movemais.estoque.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindException;
+import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 import java.time.OffsetDateTime;
-import java.util.stream.Collectors;
+import java.util.*;
 
-@RestControllerAdvice
+@ControllerAdvice
 public class ApiExceptionHandler {
 
     @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<ProblemDetails> handleNotFound(NotFoundException ex) {
-        ProblemDetails body = new ProblemDetails(
-                OffsetDateTime.now(),
-                HttpStatus.NOT_FOUND.value(),
-                "Recurso não encontrado",
-                ex.getMessage()
-        );
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    public ResponseEntity<Object> handleNotFound(NotFoundException ex, WebRequest request) {
+        return buildResponseEntity(HttpStatus.NOT_FOUND, "Recurso não encontrado", ex.getMessage(), request);
     }
 
     @ExceptionHandler(BusinessException.class)
-    public ResponseEntity<ProblemDetails> handleBusiness(BusinessException ex) {
-        ProblemDetails body = new ProblemDetails(
-                OffsetDateTime.now(),
-                HttpStatus.UNPROCESSABLE_ENTITY.value(),
-                "Erro de negócio",
-                ex.getMessage()
-        );
-        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(body);
+    public ResponseEntity<Object> handleBusiness(BusinessException ex, WebRequest request) {
+        return buildResponseEntity(HttpStatus.BAD_REQUEST, "Regra de negócio violada", ex.getMessage(), request);
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, BindException.class})
-    public ResponseEntity<ProblemDetails> handleValidation(Exception ex) {
-        BindException bindException;
-        if (ex instanceof MethodArgumentNotValidException) {
-            bindException = new BindException(((MethodArgumentNotValidException) ex).getBindingResult());
-        } else {
-            bindException = (BindException) ex;
-        }
-
-        String detalhes = bindException.getFieldErrors().stream()
-                .map(err -> err.getField() + ": " + err.getDefaultMessage())
-                .collect(Collectors.joining(", "));
-
-        ProblemDetails body = new ProblemDetails(
-                OffsetDateTime.now(),
-                HttpStatus.BAD_REQUEST.value(),
-                "Dados inválidos",
-                detalhes
-        );
-        return ResponseEntity.badRequest().body(body);
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Object> handleValidation(MethodArgumentNotValidException ex, WebRequest request) {
+        Map<String, Object> body = baseBody(HttpStatus.BAD_REQUEST, "Dados inválidos", request);
+        List<Map<String, String>> fields = ex.getBindingResult().getFieldErrors().stream()
+                .map(err -> Map.of(
+                        "field", err.getField(),
+                        "message", Objects.requireNonNullElse(err.getDefaultMessage(), "inválido")
+                ))
+                .toList();
+        body.put("fields", fields);
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ProblemDetails> handleGeneric(Exception ex) {
-        // TEMPORÁRIO: logar stacktrace para identificar erro 500
-        ex.printStackTrace();
-
-        ProblemDetails body = new ProblemDetails(
-                OffsetDateTime.now(),
-                HttpStatus.INTERNAL_SERVER_ERROR.value(),
-                "Erro interno",
-                "Ocorreu um erro inesperado."
-        );
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+    public ResponseEntity<Object> handleGeneric(Exception ex, WebRequest request) {
+        return buildResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR,
+                "Erro interno", "Ocorreu um erro inesperado.", request);
     }
 
-    public static class ProblemDetails {
-        private OffsetDateTime timestamp;
-        private int status;
-        private String error;
-        private String message;
+    private ResponseEntity<Object> buildResponseEntity(HttpStatus status, String error,
+                                                       String message, WebRequest request) {
+        Map<String, Object> body = baseBody(status, error, request);
+        body.put("message", message);
+        return ResponseEntity.status(status).body(body);
+    }
 
-        public ProblemDetails() { }
-
-        public ProblemDetails(OffsetDateTime timestamp, int status, String error, String message) {
-            this.timestamp = timestamp;
-            this.status = status;
-            this.error = error;
-            this.message = message;
-        }
-
-        public OffsetDateTime getTimestamp() { return timestamp; }
-        public void setTimestamp(OffsetDateTime timestamp) { this.timestamp = timestamp; }
-
-        public int getStatus() { return status; }
-        public void setStatus(int status) { this.status = status; }
-
-        public String getError() { return error; }
-        public void setError(String error) { this.error = error; }
-
-        public String getMessage() { return message; }
-        public void setMessage(String message) { this.message = message; }
+    private Map<String, Object> baseBody(HttpStatus status, String error, WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("timestamp", OffsetDateTime.now());
+        body.put("status", status.value());
+        body.put("error", error);
+        body.put("path", request.getDescription(false).replace("uri=", ""));
+        return body;
     }
 }

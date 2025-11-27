@@ -2,11 +2,15 @@ package com.movemais.estoque.controller;
 
 import com.movemais.estoque.dto.movimento.MovimentoCreateRequest;
 import com.movemais.estoque.dto.movimento.MovimentoResponse;
+import com.movemais.estoque.entity.MovimentoEstoque;
 import com.movemais.estoque.service.MovimentoEstoqueService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.OffsetDateTime;
 
 @RestController
 @RequestMapping("/api/movimentos")
@@ -28,5 +32,17 @@ public class MovimentoEstoqueController {
     @GetMapping
     public Page<MovimentoResponse> listar(Pageable pageable) {
         return service.listar(pageable);
+    }
+
+    @GetMapping("/relatorio")
+    public Page<MovimentoResponse> relatorio(
+            @RequestParam(required = false) MovimentoEstoque.TipoMovimento tipo,
+            @RequestParam(required = false) Long produtoId,
+            @RequestParam(required = false) Long depositoId,
+            @RequestParam(required = false) OffsetDateTime dataInicio,
+            @RequestParam(required = false) OffsetDateTime dataFim,
+            Pageable pageable) {
+
+        return service.relatorio(tipo, produtoId, depositoId, dataInicio, dataFim, pageable);
     }
 }

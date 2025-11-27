@@ -48,7 +48,7 @@ public class MovimentoEstoqueService {
                 .quantidade(request.quantidade())
                 .dataHoraMovimento(OffsetDateTime.now())
                 .observacao(request.observacao())
-                .usuarioResponsavel("admin") // ou obter do SecurityContext
+                .usuarioResponsavel("admin")
                 .build();
 
         MovimentoEstoque salvo = movimentoRepository.save(movimento);
@@ -89,8 +89,23 @@ public class MovimentoEstoqueService {
         return toResponse(salvo);
     }
 
+    @Transactional(readOnly = true)
     public Page<MovimentoResponse> listar(Pageable pageable) {
         return movimentoRepository.findAll(pageable)
+                .map(this::toResponse);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<MovimentoResponse> relatorio(
+            MovimentoEstoque.TipoMovimento tipo,
+            Long produtoId,
+            Long depositoId,
+            OffsetDateTime dataInicio,
+            OffsetDateTime dataFim,
+            Pageable pageable) {
+
+        return movimentoRepository.buscarPorFiltros(
+                        tipo, produtoId, depositoId, dataInicio, dataFim, pageable)
                 .map(this::toResponse);
     }
 

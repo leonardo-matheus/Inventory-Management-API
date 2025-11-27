@@ -1,4 +1,9 @@
 package com.movemais.estoque.dto.deposito;
 
-public class DepositoUpdateRequest {
-}
+import jakarta.validation.constraints.NotBlank;
+
+public record DepositoUpdateRequest(
+        @NotBlank String nome,
+        @NotBlank String codigo,
+        String endereco
+) {}
