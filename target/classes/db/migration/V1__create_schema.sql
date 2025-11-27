@@ -48,11 +48,11 @@ CREATE TABLE movimento_estoque (
                                    CONSTRAINT fk_movimento_deposito FOREIGN KEY (deposito_id) REFERENCES deposito (id)
 );
 
--- Usuário admin inicial (senha: admin123, BCrypt gerado com BCryptPasswordEncoder)
+-- ATENÇÃO: substitua ABAIXO pelo hash IMPRESSO no seu console
 INSERT INTO usuario (username, password, role, ativo)
 VALUES (
            'admin',
-           '$2a$10$wMME.fAm1bGOnhcBG2T7YulByUp/LhhuG6qJGbW8u6EEpd3PUSda.', -- senha: admin123
+           '$2a$10$SqSZOSivN5xYxFc5cUjLV.oYj5wkXdkMx3tf/c0lvLIcv4DgFJuPm',
            'ROLE_ADMIN',
            TRUE
        );

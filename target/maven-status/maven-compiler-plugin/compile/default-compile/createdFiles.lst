@@ -12,6 +12,7 @@ com\movemais\estoque\dto\movimento\MovimentoCreateRequest.class
 com\movemais\estoque\controller\MovimentoEstoqueController.class
 com\movemais\estoque\exception\NotFoundException.class
 com\movemais\estoque\entity\Estoque$EstoqueBuilder.class
+com\movemais\estoque\config\BcryptGenerator.class
 com\movemais\estoque\repository\ProdutoRepository.class
 com\movemais\estoque\dto\produto\ProdutoUpdateRequest.class
 com\movemais\estoque\exception\BusinessException.class
