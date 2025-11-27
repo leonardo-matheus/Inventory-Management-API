@@ -5,18 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60a8795a-6921-497c-b0e6-f2b166af3471" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/exception/BusinessException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application-dev.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/movemais/estoque/service/BcryptCheck.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/inventory/InventoryApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/movemais/inventory/InventoryApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/movemais/estoque/InventoryApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/config/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/config/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/controller/ProdutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/controller/ProdutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/dto/auth/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/dto/auth/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/Estoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/Estoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/MovimentoEstoque.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/MovimentoEstoque.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/Produto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/Produto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/exception/ApiExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/movemais/estoque/exception/ApiExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/movemais/estoque/service/MovimentoEstoqueServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/movemais/estoque/service/MovimentoEstoqueServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.movemais.estoque.InventoryApplicationTests.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.movemais.estoque.InventoryApplicationTests.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.movemais.estoque.service.MovimentoEstoqueServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.movemais.estoque.service.MovimentoEstoqueServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.movemais.estoque.InventoryApplicationTests.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.movemais.estoque.InventoryApplicationTests.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.movemais.estoque.service.MovimentoEstoqueServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.movemais.estoque.service.MovimentoEstoqueServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/movemais/estoque/service/MovimentoEstoqueServiceTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +61,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.BcryptCheck.executor&quot;: &quot;Run&quot;,
     &quot;Maven.inventory [clean].executor&quot;: &quot;Run&quot;,
     &quot;Maven.inventory [compile].executor&quot;: &quot;Run&quot;,
     &quot;Maven.inventory [test].executor&quot;: &quot;Run&quot;,
@@ -75,6 +84,9 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -91,13 +103,38 @@
       <recent name="C:\Users\Windows\Desktop\Inventory Management API\Inventory-Management-API\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.BcryptCheck">
+    <configuration name="BcryptCheck" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.movemais.estoque.service.BcryptCheck" />
+      <module name="inventory" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.movemais.estoque.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Inventory-Management-API" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InventoryManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="inventory" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.movemais.estoque.InventoryManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BcryptCheck" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -115,7 +152,7 @@
       <option name="presentableId" value="Default" />
       <updated>1764252180997</updated>
       <workItem from="1764252182754" duration="679000" />
-      <workItem from="1764253484663" duration="6238000" />
+      <workItem from="1764253484663" duration="11018000" />
     </task>
     <servers />
   </component>

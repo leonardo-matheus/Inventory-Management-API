@@ -5,10 +5,13 @@ import lombok.*;
 
 @Entity
 @Table(name = "estoque",
-       uniqueConstraints = @UniqueConstraint(name = "uk_estoque_produto_deposito",
-                                             columnNames = {"produto_id", "deposito_id"}))
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor @Builder
+        uniqueConstraints = @UniqueConstraint(name = "uk_estoque_produto_deposito",
+                columnNames = {"produto_id", "deposito_id"}))
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Estoque {
 
     @Id

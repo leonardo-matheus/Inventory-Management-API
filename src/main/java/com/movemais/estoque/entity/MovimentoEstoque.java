@@ -7,8 +7,11 @@ import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "movimento_estoque")
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MovimentoEstoque {
 
     public enum TipoMovimento {

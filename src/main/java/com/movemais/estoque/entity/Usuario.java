@@ -5,9 +5,12 @@ import lombok.*;
 
 @Entity
 @Table(name = "usuario",
-       uniqueConstraints = @UniqueConstraint(name = "uk_usuario_username", columnNames = "username"))
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor @Builder
+        uniqueConstraints = @UniqueConstraint(name = "uk_usuario_username", columnNames = "username"))
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Usuario {
 
     @Id
@@ -21,7 +24,7 @@ public class Usuario {
     private String password;
 
     @Column(nullable = false, length = 30)
-    private String role; // ROLE_ADMIN, ROLE_USER ...
+    private String role;
 
     @Column(nullable = false)
     private boolean ativo = true;

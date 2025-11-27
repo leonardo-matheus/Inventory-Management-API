@@ -8,8 +8,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "produto",
         uniqueConstraints = @UniqueConstraint(name = "uk_produto_sku", columnNames = "sku"))
-@Getter @Setter
-@NoArgsConstructor @AllArgsConstructor @Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Produto {
 
     @Id
