@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.movemais.estoque.InventoryApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.47 s -- in com.movemais.estoque.InventoryApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.883 s -- in com.movemais.estoque.InventoryApplicationTests

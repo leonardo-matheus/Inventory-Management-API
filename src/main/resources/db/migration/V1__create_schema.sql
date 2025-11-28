@@ -48,7 +48,7 @@ CREATE TABLE movimento_estoque (
                                    CONSTRAINT fk_movimento_deposito FOREIGN KEY (deposito_id) REFERENCES deposito (id)
 );
 
--- ATENÇÃO: substitua ABAIXO pelo hash IMPRESSO no seu console
+-- Usuário admin (senha: admin123, hash gerado no seu ambiente)
 INSERT INTO usuario (username, password, role, ativo)
 VALUES (
            'admin',
@@ -57,8 +57,119 @@ VALUES (
            TRUE
        );
 
-INSERT INTO produto (sku, nome, descricao, preco_unitario, ativo)
-VALUES ('SKU-001', 'Produto Exemplo', 'Produto de teste', 10.00, TRUE);
+-- PRODUTOS (supermercado)
+INSERT INTO produto (sku, nome, descricao, preco_unitario, ativo) VALUES
+('SKU-001', 'Produto Exemplo', 'Produto de teste', 10.00, TRUE),
+('SKU-ARROZ-5KG', 'Arroz Tipo 1 5kg', 'Arroz branco tipo 1 pacote 5kg', 24.90, TRUE),
+('SKU-FEIJAO-1KG', 'Feijão Carioca 1kg', 'Feijão carioca seleção 1kg', 8.99, TRUE),
+('SKU-ACUCAR-5KG', 'Açúcar Refinado 5kg', 'Açúcar refinado pacote 5kg', 16.50, TRUE),
+('SKU-OLEO-SOJA-900', 'Óleo de Soja 900ml', 'Óleo de soja refinado 900ml', 7.49, TRUE),
+('SKU-CAFE-500G', 'Café Torrado e Moído 500g', 'Café tradicional torrado e moído 500g', 14.90, TRUE),
+('SKU-LEITE-1L', 'Leite UHT Integral 1L', 'Leite longa vida integral 1L', 4.79, TRUE),
+('SKU-MACARRAO-ESPAG', 'Macarrão Espaguete 500g', 'Macarrão espaguete sêmola 500g', 5.29, TRUE),
+('SKU-SAL-1KG', 'Sal Refinado 1kg', 'Sal refinado iodado 1kg', 2.49, TRUE),
+('SKU-BISCOITO-AGUA', 'Biscoito Água e Sal 400g', 'Biscoito tipo água e sal 400g', 6.59, TRUE),
+('SKU-SABONETE-90G', 'Sabonete 90g', 'Sabonete perfumado 90g', 2.99, TRUE),
+('SKU-DETERG-500ML', 'Detergente Líquido 500ml', 'Detergente neutro 500ml', 3.99, TRUE),
+('SKU-PAPELHIG-12', 'Papel Higiênico 12 rolos', 'Papel higiênico folha dupla 12 rolos', 19.90, TRUE),
+('SKU-REFRI-2L', 'Refrigerante Cola 2L', 'Refrigerante sabor cola 2L', 8.49, TRUE),
+('SKU-AGUA-500ML', 'Água Mineral 500ml', 'Água mineral sem gás 500ml', 1.99, TRUE);
 
-INSERT INTO deposito (nome, codigo, endereco)
-VALUES ('Depósito Central', 'DEP-001', 'Rua A, 123');
+-- DEPÓSITOS / LOJAS
+INSERT INTO deposito (nome, codigo, endereco) VALUES
+('Depósito Central', 'DEP-001', 'Rua A, 123'),
+('Centro de Distribuição', 'DEP-CD-01', 'Rodovia BR 101, Km 200 - Galpão 3'),
+('Loja Zona Sul', 'DEP-ZS-01', 'Av. Atlântica, 500 - Bairro Zona Sul'),
+('Loja Zona Norte', 'DEP-ZN-01', 'Rua das Palmeiras, 250 - Bairro Zona Norte');
+
+-- ESTOQUE INICIAL
+-- Supondo que os IDs de produtos seguirão a ordem de inserção (H2 identity)
+-- ID 1  = SKU-001 (Produto Exemplo)
+-- ID 2  = Arroz 5kg
+-- ID 3  = Feijão 1kg
+-- ID 4  = Açúcar 5kg
+-- ID 5  = Óleo 900ml
+-- ID 6  = Café 500g
+-- ID 7  = Leite 1L
+-- ID 8  = Macarrão 500g
+-- ID 9  = Sal 1kg
+-- ID 10 = Biscoito 400g
+-- ID 11 = Sabonete 90g
+-- ID 12 = Detergente 500ml
+-- ID 13 = Papel Higiênico 12 rolos
+-- ID 14 = Refrigerante 2L
+-- ID 15 = Água 500ml
+--
+-- Depósitos:
+-- ID 1 = Depósito Central
+-- ID 2 = Centro de Distribuição
+-- ID 3 = Loja Zona Sul
+-- ID 4 = Loja Zona Norte
+
+-- Depósito Central (estoque mais alto, usado para reposição)
+INSERT INTO estoque (produto_id, deposito_id, quantidade_atual) VALUES
+(2, 1, 500),   -- Arroz no Depósito Central
+(3, 1, 450),   -- Feijão
+(4, 1, 300),   -- Açúcar
+(5, 1, 600),   -- Óleo
+(6, 1, 250),   -- Café
+(7, 1, 800),   -- Leite
+(8, 1, 400),   -- Macarrão
+(9, 1, 350),   -- Sal
+(10, 1, 200),  -- Biscoito
+(11, 1, 500),  -- Sabonete
+(12, 1, 300),  -- Detergente
+(13, 1, 150),  -- Papel Higiênico
+(14, 1, 220),  -- Refrigerante
+(15, 1, 700);  -- Água mineral
+
+-- Centro de Distribuição (intermediário)
+INSERT INTO estoque (produto_id, deposito_id, quantidade_atual) VALUES
+(2, 2, 200),
+(3, 2, 180),
+(4, 2, 120),
+(5, 2, 250),
+(6, 2, 100),
+(7, 2, 300),
+(8, 2, 150),
+(9, 2, 130),
+(10, 2, 90),
+(11, 2, 200),
+(12, 2, 150),
+(13, 2, 80),
+(14, 2, 110),
+(15, 2, 260);
+
+-- Loja Zona Sul
+INSERT INTO estoque (produto_id, deposito_id, quantidade_atual) VALUES
+(2, 3, 80),
+(3, 3, 70),
+(4, 3, 50),
+(5, 3, 90),
+(6, 3, 40),
+(7, 3, 120),
+(8, 3, 60),
+(9, 3, 55),
+(10, 3, 45),
+(11, 3, 110),
+(12, 3, 70),
+(13, 3, 40),
+(14, 3, 60),
+(15, 3, 130);
+
+-- Loja Zona Norte
+INSERT INTO estoque (produto_id, deposito_id, quantidade_atual) VALUES
+(2, 4, 60),
+(3, 4, 55),
+(4, 4, 40),
+(5, 4, 75),
+(6, 4, 35),
+(7, 4, 100),
+(8, 4, 50),
+(9, 4, 45),
+(10, 4, 35),
+(11, 4, 90),
+(12, 4, 60),
+(13, 4, 30),
+(14, 4, 50),
+(15, 4, 100);

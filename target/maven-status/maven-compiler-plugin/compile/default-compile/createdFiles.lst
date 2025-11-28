@@ -7,7 +7,6 @@ com\movemais\estoque\exception\ApiExceptionHandler.class
 com\movemais\estoque\repository\MovimentoEstoqueRepository.class
 com\movemais\estoque\controller\DepositoController.class
 com\movemais\estoque\controller\MovimentoEstoqueController.class
-com\movemais\estoque\config\BcryptGenerator.class
 com\movemais\estoque\repository\ProdutoRepository.class
 com\movemais\estoque\dto\produto\ProdutoUpdateRequest.class
 com\movemais\estoque\controller\ProdutoController.class
